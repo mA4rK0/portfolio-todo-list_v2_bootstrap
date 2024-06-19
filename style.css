@@ -1,0 +1,34 @@
+body {
+  font-family: "Exo", sans-serif;
+  background-color: violet;
+}
+
+.contener,
+.tasks {
+  margin-left: 25%;
+}
+
+#error {
+  margin-left: 25%;
+}
+
+#wrapper button {
+  width: 9rem;
+  margin-left: 0.5rem;
+}
+
+#wrapper input {
+  height: 2.2rem;
+  border: none;
+  border-bottom: 2px solid gray;
+  padding-bottom: 0.2rem;
+}
+
+#wrapper input:focus {
+  outline: none;
+  border-color: darkturquoise;
+}
+
+hr {
+  width: 90%;
+}
