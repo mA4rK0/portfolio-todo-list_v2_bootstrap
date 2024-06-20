@@ -5,17 +5,41 @@ document.addEventListener("DOMContentLoaded", () => {
   const errMsg = document.querySelector("#error");
   const tasks = document.querySelector(".tasks");
 
-  //   add button
+  // Inisialisasi count dengan nilai dari local storage
+  let count = getCountStg();
+
+  // Add button
   addBtn.addEventListener("click", makeTask);
 
-  //   load all the tasks and counts after reload the page
+  // Load all the tasks and counts after reload the page
   loadTask();
   loadNumber();
 
-  //   count the task
-  let count = 0;
+  // Delete button
+  tasks.addEventListener("click", (e) => {
+    if (e.target.classList.contains("deleteBton")) {
+      let parentElm = e.target.parentElement;
+      parentElm.remove();
+      removeTask(parentElm.firstChild.textContent.trim());
+      decrCount();
+    }
+  });
 
-  //   add a task
+  // Remove a task from the local storage
+  function removeTask(aTask) {
+    let tasks = getLocalArray();
+    tasks = tasks.filter((task) => task !== aTask);
+    localStorage.setItem("todos", JSON.stringify(tasks));
+  }
+
+  // Decreasing the count
+  function decrCount() {
+    count -= 1;
+    countDis.textContent = count;
+    saveCount(count);
+  }
+
+  // Add a task
   function makeTask() {
     const acc = input.value.trim();
     if (acc === "") {
@@ -26,8 +50,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const section = document.createElement("section");
-    section.classList.add("mt-4", "ms-4");
-    section.innerHTML = `${acc} <hr/>`;
+    section.classList.add("position-relative", "mt-4", "ms-4");
+    section.innerHTML = `${acc} <button class="deleteBton position-absolute btn btn-danger me-3">X</button> <hr/>`;
     tasks.append(section);
 
     count += 1;
@@ -38,56 +62,43 @@ document.addEventListener("DOMContentLoaded", () => {
     input.value = "";
   }
 
-  //   save the task to the local storage
+  // Save the task to the local storage
   function saveTask(task) {
-    //* get the JSON Array from the local storage.
     let localStg = getLocalArray();
-
-    //* push the localStg into the local array
     localStg.push(task);
     localStorage.setItem("todos", JSON.stringify(localStg));
   }
 
-  //   save the count to the local storage
+  // Save the count to the local storage
   function saveCount(counting) {
-    //* get the Count from the local storage.
-    let countStorage = getCountStg();
-
-    //* change the last count to the current count
-    countStorage = "";
-    localStorage.setItem("counts", countStorage);
-    let number = counting;
-    localStorage.setItem("counts", number.toString());
+    localStorage.setItem("counts", counting.toString());
   }
 
-  //   get the count array from the local storage
+  // Get the count from the local storage
   function getCountStg() {
-    let count = localStorage.getItem("counts");
-    if (count) {
-      return parseInt(count);
-    }
+    const count = localStorage.getItem("counts");
+    return count ? parseInt(count) : 0;
   }
 
-  //   get the local storage
+  // Get the local storage
   function getLocalArray() {
     let todos = localStorage.getItem("todos");
     return todos ? JSON.parse(todos) : [];
   }
 
-  //   load the task
+  // Load the task
   function loadTask() {
     const todos = getLocalArray();
     todos.forEach((todo) => {
       let section = document.createElement("section");
-      section.classList.add("mt-4", "ms-4");
-      section.innerHTML = `${todo} <hr/>`;
+      section.classList.add("position-relative", "mt-4", "ms-4");
+      section.innerHTML = `${todo} <button class="deleteBton position-absolute btn btn-danger me-3">X</button> <hr/>`;
       tasks.append(section);
     });
   }
 
-  //   load the count
+  // Load the count
   function loadNumber() {
-    const number = getCountStg();
-    countDis.textContent = number;
+    countDis.textContent = count;
   }
 });
