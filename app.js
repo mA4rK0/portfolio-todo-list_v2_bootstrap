@@ -17,16 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Delete and edit button
   tasks.addEventListener("click", (e) => {
-    //! let parentElm = e.target.parentElement;
-
-    //! if (e.target.classList.contains("deleteBton")) {
-    //   parentElm.remove();
-    //   removeTask(parentElm.firstChild.textContent.trim());
-    //   decrCount();
-    // } else if (e.target.classList.contains("editBton")) {
-    //   editTask(parentElm);
-    // }
-
     if (e.target.closest(".deleteBton")) {
       const parentElm = e.target.closest("section");
       parentElm.remove();

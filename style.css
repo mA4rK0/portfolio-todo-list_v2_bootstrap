@@ -37,8 +37,26 @@ hr {
 .editBton {
   top: 0;
   right: 0;
+  visibility: hidden;
+  transition: transform 0.3s;
+  transform: translateX(100%);
+}
+
+.position-relative:hover .deleteBton {
+  visibility: visible;
+  transform: translateX(0);
+  transition-delay: 0s;
+}
+
+.position-relative:hover .editBton {
+  visibility: visible;
+  transform: translateX(0);
+  transition-delay: 0.1s;
 }
 
 .editBton {
   margin-right: 9%;
+}
+
+@media (max-width: 413px) {
 }
