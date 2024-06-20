@@ -1,7 +1,7 @@
 body {
   font-family: "Exo", sans-serif;
-  background: url(img/library.jpg);
-  background-size: cover;
+  background-color: #4e73df;
+  background-image: linear-gradient(90deg, #4e73df, #224abe);
 }
 
 .contener,
@@ -57,7 +57,4 @@ hr {
 
 .editBton {
   margin-right: 9%;
-}
-
-@media (max-width: 413px) {
 }
