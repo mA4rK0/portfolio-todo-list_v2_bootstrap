@@ -30,10 +30,15 @@ body {
 }
 
 hr {
-  width: 90%;
+  width: 84%;
 }
 
-.deleteBton {
+.deleteBton,
+.editBton {
   top: 0;
   right: 0;
+}
+
+.editBton {
+  margin-right: 9%;
 }

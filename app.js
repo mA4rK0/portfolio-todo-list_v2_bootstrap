@@ -15,13 +15,26 @@ document.addEventListener("DOMContentLoaded", () => {
   loadTask();
   loadNumber();
 
-  // Delete button
+  // Delete and edit button
   tasks.addEventListener("click", (e) => {
-    if (e.target.classList.contains("deleteBton")) {
-      let parentElm = e.target.parentElement;
+    //! let parentElm = e.target.parentElement;
+
+    //! if (e.target.classList.contains("deleteBton")) {
+    //   parentElm.remove();
+    //   removeTask(parentElm.firstChild.textContent.trim());
+    //   decrCount();
+    // } else if (e.target.classList.contains("editBton")) {
+    //   editTask(parentElm);
+    // }
+
+    if (e.target.closest(".deleteBton")) {
+      const parentElm = e.target.closest("section");
       parentElm.remove();
       removeTask(parentElm.firstChild.textContent.trim());
       decrCount();
+    } else if (e.target.closest(".editBton")) {
+      const parentElm = e.target.closest("section");
+      editTask(parentElm);
     }
   });
 
@@ -49,9 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
       errMsg.classList.add("d-none");
     }
 
-    const section = document.createElement("section");
-    section.classList.add("position-relative", "mt-4", "ms-4");
-    section.innerHTML = `${acc} <button class="deleteBton position-absolute btn btn-danger me-3">X</button> <hr/>`;
+    const section = createTaskElement(acc);
     tasks.append(section);
 
     count += 1;
@@ -60,6 +71,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     saveTask(acc);
     input.value = "";
+  }
+
+  // create task element
+  function createTaskElement(taskText) {
+    const section = document.createElement("section");
+    section.classList.add("position-relative", "mt-4", "ms-4");
+    section.innerHTML = `${taskText} 
+    <button class="editBton position-absolute btn btn-warning"><i class="bi bi-pencil-square"></i></button>
+    <button class="deleteBton position-absolute btn btn-danger me-3"><i class="bi bi-trash3-fill"></i></button> <hr/>`;
+    return section;
   }
 
   // Save the task to the local storage
@@ -90,9 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadTask() {
     const todos = getLocalArray();
     todos.forEach((todo) => {
-      let section = document.createElement("section");
-      section.classList.add("position-relative", "mt-4", "ms-4");
-      section.innerHTML = `${todo} <button class="deleteBton position-absolute btn btn-danger me-3">X</button> <hr/>`;
+      let section = createTaskElement(todo);
       tasks.append(section);
     });
   }
@@ -100,5 +119,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // Load the count
   function loadNumber() {
     countDis.textContent = count;
+  }
+
+  // edit a task
+  function editTask(section) {
+    const taskText = section.firstChild.textContent.trim();
+    const newTask = prompt("Edit your task:", taskText);
+
+    if (newTask !== null && newTask.trim() !== "") {
+      section.firstChild.textContent = newTask.trim() + " ";
+      updateLocalStr(taskText, newTask.trim());
+    }
+  }
+
+  // update the task in local storage
+  function updateLocalStr(oldTask, newTaskText) {
+    let tasks = getLocalArray();
+
+    const taskIndex = tasks.indexOf(oldTask);
+    if (taskIndex !== -1) {
+      tasks[taskIndex] = newTaskText;
+      localStorage.setItem("todos", JSON.stringify(tasks));
+    }
   }
 });
