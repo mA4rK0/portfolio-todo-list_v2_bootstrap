@@ -2,6 +2,7 @@ body {
   font-family: "Exo", sans-serif;
   background-color: violet;
   background: url(img/library.jpg);
+  background-size: cover;
 }
 
 .contener,
