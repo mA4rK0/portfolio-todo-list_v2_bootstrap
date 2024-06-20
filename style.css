@@ -4,25 +4,9 @@ body {
   background-image: linear-gradient(90deg, #4e73df, #224abe);
 }
 
-.contener,
-.tasks {
-  margin-left: 25%;
-}
-
-#error {
-  margin-left: 25%;
-}
-
-#wrapper button {
-  width: 9rem;
-  margin-left: 0.5rem;
-}
-
 #wrapper input {
-  height: 2.2rem;
   border: none;
   border-bottom: 2px solid gray;
-  padding-bottom: 0.2rem;
 }
 
 #wrapper input:focus {
@@ -30,7 +14,7 @@ body {
   border-color: darkturquoise;
 }
 
-hr {
+.todos hr {
   width: 84%;
 }
 
@@ -38,6 +22,7 @@ hr {
 .editBton {
   top: 0;
   right: 0;
+  margin-top: 1rem;
   visibility: hidden;
   transition: transform 0.3s;
   transform: translateX(100%);
@@ -57,4 +42,21 @@ hr {
 
 .editBton {
   margin-right: 9%;
+}
+
+.todos {
+  margin-left: 24rem;
+}
+
+@media (max-width: 413px) {
+  .todos {
+    margin-left: 6rem;
+  }
+
+  .deleteBton,
+  .editBton {
+    visibility: visible;
+    transition: none;
+    transform: none;
+  }
 }

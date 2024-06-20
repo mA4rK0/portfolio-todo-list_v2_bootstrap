@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.getElementById("add-btn");
   const countDis = document.querySelector(".count-value");
   const errMsg = document.querySelector("#error");
-  const tasks = document.querySelector(".tasks");
+  const tasks = document.querySelector(".todos");
 
   // Inisialisasi count dengan nilai dari local storage
   let count = getCountStg();
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // create task element
   function createTaskElement(taskText) {
     const section = document.createElement("section");
-    section.classList.add("position-relative", "mt-4", "ms-4");
+    section.classList.add("position-relative", "pt-3", "ps-4");
     section.innerHTML = `${taskText} 
     <button class="editBton position-absolute btn btn-warning"><i class="bi bi-pencil-square"></i></button>
     <button class="deleteBton position-absolute btn btn-danger me-3"><i class="bi bi-trash3-fill"></i></button> <hr/>`;
