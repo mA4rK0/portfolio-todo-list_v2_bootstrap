@@ -15,14 +15,14 @@ body {
 }
 
 .todos hr {
-  width: 84%;
+  width: 80%;
 }
 
 .deleteBton,
 .editBton {
   top: 0;
   right: 0;
-  margin-top: 1rem;
+  margin-bottom: 1%;
   visibility: hidden;
   transition: transform 0.3s;
   transform: translateX(100%);
@@ -41,22 +41,10 @@ body {
 }
 
 .editBton {
-  margin-right: 9%;
+  margin-right: 12%;
 }
 
 .todos {
-  margin-left: 24rem;
-}
-
-@media (max-width: 413px) {
-  .todos {
-    margin-left: 6rem;
-  }
-
-  .deleteBton,
-  .editBton {
-    visibility: visible;
-    transition: none;
-    transform: none;
-  }
+  margin-left: 30%;
+  margin-right: 30%;
 }

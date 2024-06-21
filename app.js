@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // create task element
   function createTaskElement(taskText) {
     const section = document.createElement("section");
-    section.classList.add("position-relative", "pt-3", "ps-4");
+    section.classList.add("position-relative");
     section.innerHTML = `${taskText} 
     <button class="editBton position-absolute btn btn-warning"><i class="bi bi-pencil-square"></i></button>
     <button class="deleteBton position-absolute btn btn-danger me-3"><i class="bi bi-trash3-fill"></i></button> <hr/>`;
