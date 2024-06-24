@@ -47,4 +47,31 @@ body {
 .todos {
   margin-left: 30%;
   margin-right: 30%;
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .todos {
+    margin-left: 9%;
+    margin-right: 9%;
+  }
+
+  .editBton {
+    margin-right: 23%;
+  }
+
+  .todos hr {
+    width: 61%;
+  }
+
+  .app {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 765px) and (max-width: 900px) {
+  .todos {
+    margin-left: 8%;
+    margin-right: 8%;
+  }
 }
